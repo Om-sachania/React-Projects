@@ -1,0 +1,96 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #ffff;
+}
+
+li{
+    list-style: none;
+}
+
+header{
+    width: 100%;
+    background-color: rgb(149, 202, 248);
+}
+.container{
+    /* border: 2px solid blue; */
+    max-width: 90rem;
+    margin: auto;
+    align-items: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: 0.5fr 1fr;
+    border: 2px solid red;
+}
+
+.logo{
+    /* background-color: yellowgreen; */
+    /* margin-left: 24px; */
+}
+
+.list-items ul{
+    /* background-color: pink; */
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+    margin-right: 24px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+a:hover{
+    color: red;
+}
+
+.menuBtn{
+    background-color: black;
+    color: #ffff;
+    padding: 8px;
+    border: none;
+    display: none;
+}
+
+@media screen and (max-width:800px){
+    .menu-web{
+        display: none;
+    }
+
+    .menu-mobile{
+        position: absolute;
+        top: 5.5rem;
+        width: 100%;
+        background-color: blanchedalmond;
+    }
+
+    .menu-mobile ul:first-child{
+        margin-top: 16px;
+    }
+    .menu-mobile ul:last-child{
+        margin-bottom: 16px;
+    }
+    .menu-mobile ul{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .menuBtn{
+        display: inline-block;
+        cursor: pointer;
+    }
+    .icon{
+        text-align: end;
+        margin-right: 24px;
+    }
+}
