@@ -1,0 +1,113 @@
+import React from 'react'
+import "./style.css"
+import { useState } from 'react'
+ 
+const Test = () => {
+    let object = {
+        "fruit": ["banana", "apple", "guava", "kivi", "strawberry", "blueberry"],
+        "bird": ["peacock", "sparrow", "eagle", "black Drongo"],
+        "chinese food": ["manchurium", "noodle", "spring roll"],
+        "car": ["maruti Suzaki alto", "maruti Suzuki Swift", "hyundai Creta", "maruti Suzuki Dzire", "toyota Innova Crysta"]
+    }
+ 
+    //filed
+    const [selectField, setSelectField] = useState("");
+    const [categories,setCategories] = useState(Object.keys(object));
+ 
+    //Condtion
+    const [selectCondition, setSelectCondition] = useState("");
+    const [condtionCategories,setConditionCategories] = useState([]);
+     
+    //addgroup
+    const [addgroup,setAddgroup] = useState(false)
+ 
+    //input
+    const [inputValue, setInputValue] = useState("");
+    
+    //delete
+    const [items, setItems] = useState([]);
+    
+    const handleAddCondition = () => {
+        if (selectField && selectCondition && inputValue) {
+            const newItem = { field: selectField, condition: selectCondition, value: inputValue };
+            setItems([...items, newItem]);
+            setSelectField('');
+            setSelectCondition('');
+            setInputValue('');
+          } else {
+            alert('Please fill in all fields before adding');
+          }
+    }
+    const handleAddGroup = () => {
+        
+    }
+      
+    const handleSelectField = (e) => {
+        const selectField = e.target.value;
+        setSelectField(selectField);
+        setConditionCategories(object[selectField] || []);
+        setSelectCondition('');
+ 
+    }
+    const handleSelectCondtion = (e) => {
+        setSelectCondition(e.target.value);
+    }
+ 
+    const handleChangeValue =(e) => {
+           setInputValue(e.target.value);
+      }
+     const handleDelete = (idx) => {
+        setItems(items.filter((val, i) => i !== idx));
+     }
+   
+  
+    return (
+        <div className='container'>
+            <div className="navbar">
+            <div id='name'>AND</div>
+            <button onClick={handleAddCondition}>Add Condition</button>
+            <button onClick={handleAddGroup}>Add Group</button>
+            {
+                addgroup &&
+                <>
+                <button className='remove-button'>remove Item</button>
+                </>
+            }
+            </div>
+            <div className='table-field'>
+                <select value={selectField} onChange={handleSelectField}>
+                            <option value="" disabled>Select field</option>
+                            {categories.map((category, i) => (
+                                <option key={i} value={category}>{category}</option>
+                            ))}
+                        </select>
+                        <select value={selectCondition} onChange={handleSelectCondtion}>
+                                <option value="" disabled>Select Condition</option>
+                            {condtionCategories.map((parent, i) => (
+                                <option key={i} value={parent}>{parent}</option>
+                            ))}
+                        </select>
+                        <input type='text' placeholder='Enter value' value={inputValue} onChange={handleChangeValue} />
+            </div>
+ 
+    {items.length > 0 && (
+        <table className='add-field'>
+          <tbody>
+            {items.map((item, idx) => (
+              <tr key={idx}>
+                <td><input type='text' value={item.field} readOnly /></td>
+                <td><input type='text' value={item.condition} readOnly /></td>
+                <td><input type='text' value={item.value} readOnly /></td>
+                <td><button onClick={() => handleDelete(idx)}>Delete</button></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+ 
+        </div>
+    )
+ 
+}
+ 
+export default Test

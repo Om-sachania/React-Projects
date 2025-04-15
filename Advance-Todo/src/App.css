@@ -1,0 +1,40 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+button,select,input{
+  padding: 6px;
+}
+select,input{
+  border: transparent;
+}
+.container{
+  /* border: 2px solid red; */
+  padding-left: 20px;
+}
+
+.mainDiv{
+  margin-top: 24px;
+}
+
+.navBar{
+  /* border: 2px solid lime; */
+  display: flex;
+  gap: 20px;
+}
+
+.section-1{
+  display: flex;
+  gap: 16px;
+  background-color: white;
+  border: 1px solid gray;
+  margin-top: 12px;
+}
+
+/* #subCategory{
+  background-color: rgba(156, 155, 244, 0.3);
+} */
+
+table input{
+  border: 1px solid gray;
+}
